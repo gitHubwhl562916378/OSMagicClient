@@ -63,8 +63,11 @@ QString DLL::CloudHttpDao::addCamera(const RestServiceI::AddCameraParams &params
     QJsonObject jsObj{{"tableName", params.tableName},
                       {"nickname", params.cameraName},
                       {"rtsp", params.rtsp},
-                      {"groupId", params.groupId},
-                      {"groupName", params.groupName}};
+                      {"groupId", params.groupId}};
+    if(!params.groupName.isEmpty())
+    {
+        jsObj.insert("groupName", params.groupName);
+    }
     QJsonDocument jsDoc(jsObj);
     QByteArray js_byte_array = jsDoc.toJson();
     std::string body_data = js_byte_array.toStdString();

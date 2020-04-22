@@ -78,7 +78,7 @@ ENCODE_KEY* encode_init(const video_init_params params)
     pCodecCtx->qmin = params.qmin;
     pCodecCtx->qmax = params.qmax;
 
-    av_opt_set(pCodecCtx->priv_data, "preset", "ultrafast", 0);
+    av_opt_set(pCodecCtx->priv_data, "preset", "fast", 0);
     av_opt_set(pCodecCtx->priv_data, "tune", "zerolatency", 0);
 
 
@@ -91,7 +91,7 @@ ENCODE_KEY* encode_init(const video_init_params params)
     AVDictionary *format_opts = NULL;
     av_dict_set(&format_opts, "rtsp_transport","tcp",0);
     av_dict_set(&format_opts, "muxdelay", "0.1", 0);
-    av_dict_set(&format_opts, "preset", "ultrafast", 0);
+    av_dict_set(&format_opts, "preset", "fast", 0);
     av_dict_set(&format_opts, "tune", "zerolatency", 0);
     if ((ret = avcodec_open2(pCodecCtx, pCodec, &format_opts)) < 0) {
         printf("Failed to open encoder! ret = %d\n",ret);

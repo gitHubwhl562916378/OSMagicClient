@@ -208,13 +208,13 @@ void MainPage::slotStartBtnClicked()
     qstrcpy(params.input_file, inputUrlEdit_->currentText().toStdString().data());
     qstrcpy(params.out_file, out_url.toStdString().data());
     params.fps = viFpsSpinBox_->value();
-    params.qmax = 24;
-    params.qmin = 16;
+    params.qmax = 40; //越大码率越小,视频越模糊
+    params.qmin = 35;
     params.width = viWidthSpinBox_->value();
     params.height = viHeightSpinBox_->value();
     params.code_id = 27;
     params.pix_fmt = 0;
-    params.bit_rate = 1600000;
+    params.bit_rate = 8000;
     params.gop_size = 150;
     params.me_range = 16;
     params.max_qdiff = 4;
@@ -222,7 +222,7 @@ void MainPage::slotStartBtnClicked()
     params.keyint_min = 30;
     params.media_type = 0;
     params.max_b_frames = 0;
-    params.thread_count = 15;
+    params.thread_count = 10;
     params.b_frame_strategy = true;
     encodeI->startEncode(params);
     textEdit_->append(tr("开始视频推流: ") + input_url + " >> " + out_url);
